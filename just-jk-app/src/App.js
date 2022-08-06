@@ -1,9 +1,13 @@
 import "./App.css";
-
+import Products from "./Components/Products/Products";
 import React from "react";
 
 const App = () => {
-  return <div>Welcome to Just JK Shopping!</div>;
+  return (
+    <div>
+      <Products />
+    </div>
+  );
 };
 
 export default App;
