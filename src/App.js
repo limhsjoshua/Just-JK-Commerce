@@ -3,6 +3,7 @@ import Products from "./Components/Products/Products";
 import Checkout from "./Components/Checkout/Checkout";
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import db from "./util/Firebase";
 import NavBar from "./Components/NavBar/NavBar";
 
 const App = () => {
