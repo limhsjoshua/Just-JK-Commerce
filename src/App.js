@@ -3,6 +3,7 @@ import "./App.css";
 import Checkout from "./Components/Checkout/Checkout";
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import db from "./util/Firebase";
 
 const App = () => {
   return (
