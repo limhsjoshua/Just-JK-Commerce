@@ -1,22 +1,18 @@
 import "./App.css";
-// import Products from "./Components/Products/Products";
+import Products from "./Components/Products/Products";
 import Checkout from "./Components/Checkout/Checkout";
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import NavBar from "./Components/NavBar/NavBar";
 
 const App = () => {
   return (
     <div>
-      <div
-        id="temp-nav"
-        style={{ backgroundColor: "gray", fontWeight: "bold" }}
-      >
-        <span>Temporary Nav: </span>
-        <Link to="products">Products </Link>
-        <Link to="checkout">Checkout</Link>
+      <div>
+        <NavBar />
       </div>
       <Routes>
-        {/* <Route path="products" element={<Products />} /> */}
+        <Route path="products" element={<Products />} />
         <Route path="checkout" element={<Checkout />} />
       </Routes>
     </div>
