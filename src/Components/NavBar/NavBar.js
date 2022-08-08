@@ -13,7 +13,7 @@ import { CallMissedSharp, ShoppingCart } from "@material-ui/icons";
 import logo from "../../assets/jklogo.png";
 import useStyles from "./styles";
 
-const NavBar = () => {
+const NavBar = ({ cart }) => {
   const classes = useStyles();
   return (
     <div>
@@ -33,7 +33,7 @@ const NavBar = () => {
           <Link to="products">Products </Link>
           <Link to="checkout">Checkout</Link>
           <IconButton aria-label="Show cart items" color="inherit">
-            <Badge badgeContent={2} color="secondary">
+            <Badge badgeContent={cart.length} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>

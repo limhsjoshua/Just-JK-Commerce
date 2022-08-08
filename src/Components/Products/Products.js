@@ -4,18 +4,9 @@ import Product from "./Product/Product";
 import useStyles from "./styles";
 import { collection, getDocs } from "firebase/firestore";
 
-const getCartFromLs = () => {
-  const cart = localStorage.getItem("cart");
-  if (cart) {
-    return JSON.parse(cart);
-  }
-  return [];
-};
-
-const Products = ({ db }) => {
+const Products = ({ db, cart, setCart }) => {
   const classes = useStyles();
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState(getCartFromLs());
 
   const getProducts = async () => {
     const querySnapshot = await getDocs(collection(db, "products"));
