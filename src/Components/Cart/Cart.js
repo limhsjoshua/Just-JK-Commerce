@@ -9,10 +9,30 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import CartItem from "./CartItem/CartItem";
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, setCart }) => {
   const classes = useStyles();
 
   const isEmpty = cart.length === 0;
+
+  const addQtyInCart = (product) => {
+    const newCart = cart.map((item) => {
+      if (item.id === product.id) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCart(newCart);
+  };
+
+  const reduceQtyInCart = (product) => {
+    const newCart = cart.map((item) => {
+      if (item.id === product.id) {
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    });
+    setCart(newCart);
+  };
 
   const EmptyCart = () => (
     <Typography variant="subtitle1">
@@ -36,7 +56,13 @@ const Cart = ({ cart }) => {
           </TableHead>
           <TableBody>
             {cart.map((item, idx) => (
-              <CartItem key={`item${item.id}`} item={item} idx={idx} />
+              <CartItem
+                key={`item${item.id}`}
+                item={item}
+                idx={idx}
+                addQtyInCart={addQtyInCart}
+                reduceQtyInCart={reduceQtyInCart}
+              />
             ))}
           </TableBody>
         </Table>

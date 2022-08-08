@@ -17,7 +17,7 @@ export default function CheckoutItem({ item, idx }) {
       <TableCell align="left">{name}</TableCell>
       <TableCell align="center">{price}</TableCell>
       <TableCell align="center">{quantity}</TableCell>
-      <TableCell align="center">{price * quantity}</TableCell>
+      <TableCell align="center">{(price * quantity).toFixed(2)}</TableCell>
     </TableRow>
   );
 }

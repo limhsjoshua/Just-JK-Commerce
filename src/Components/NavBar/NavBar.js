@@ -34,7 +34,10 @@ const NavBar = ({ cart }) => {
           <Link to="checkout">Checkout</Link>
           <Link to="cart">
             <IconButton aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={cart.length} color="secondary">
+              <Badge
+                badgeContent={cart.reduce((a, b) => a + b.quantity, 0)}
+                color="secondary"
+              >
                 <ShoppingCart />
               </Badge>
             </IconButton>

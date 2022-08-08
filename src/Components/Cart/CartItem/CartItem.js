@@ -1,8 +1,14 @@
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 
-export default function CartItem({ item, idx }) {
+export default function CartItem({ item, idx, addQtyInCart, reduceQtyInCart }) {
   const { name, price, photo, description, quantity } = item;
+  const handleAddQtyInCart = () => {
+    addQtyInCart(item);
+  };
+  const handleReduceQtyInCart = () => {
+    reduceQtyInCart(item);
+  };
 
   return (
     <TableRow>
@@ -16,8 +22,12 @@ export default function CartItem({ item, idx }) {
       </TableCell>
       <TableCell align="left">{name}</TableCell>
       <TableCell align="center">{price}</TableCell>
-      <TableCell align="center">{quantity}</TableCell>
-      <TableCell align="center">{price * quantity}</TableCell>
+      <TableCell align="center">
+        <button onClick={handleReduceQtyInCart}>-</button>
+        <span>{quantity}</span>
+        <button onClick={handleAddQtyInCart}>+</button>
+      </TableCell>
+      <TableCell align="center">{(price * quantity).toFixed(2)}</TableCell>
     </TableRow>
   );
 }

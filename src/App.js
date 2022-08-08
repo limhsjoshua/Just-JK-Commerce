@@ -28,7 +28,7 @@ const App = () => {
           path="products"
           element={<Products db={db} cart={cart} setCart={setCart} />}
         />
-        <Route path="cart" element={<Cart cart={cart} />} />
+        <Route path="cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="checkout" element={<Checkout cart={cart} />} />
       </Routes>
     </div>
