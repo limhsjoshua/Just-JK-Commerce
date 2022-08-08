@@ -8,11 +8,18 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import CartItem from "./CartItem/CartItem";
+import { Link } from "react-router-dom";
 
 const Cart = ({ cart, setCart }) => {
   const classes = useStyles();
 
   const isEmpty = cart.length === 0;
+
+  const emptyCart = () => {
+    if (window.confirm("Do you want to remove all items from cart?")) {
+      setCart([]);
+    }
+  };
 
   const addQtyInCart = (product) => {
     const newCart = cart.map((item) => {
@@ -84,18 +91,21 @@ const Cart = ({ cart, setCart }) => {
             type="button"
             variant="contained"
             color="secondary"
+            onClick={emptyCart}
           >
             Empty Cart
           </Button>
-          <Button
-            className={classes.checkoutButton}
-            size="large"
-            type="button"
-            variant="contained"
-            color="primary"
-          >
-            Checkout
-          </Button>
+          <Link to="/checkout">
+            <Button
+              className={classes.checkoutButton}
+              size="large"
+              type="button"
+              variant="contained"
+              color="primary"
+            >
+              Checkout
+            </Button>
+          </Link>
         </div>
       </div>
     </>
