@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import db from "./util/Firebase";
 import NavBar from "./Components/NavBar/NavBar";
+import Cart from "./Components/Cart/Cart";
 
 const getCartFromLs = () => {
   const cart = localStorage.getItem("cart");
@@ -16,6 +17,7 @@ const getCartFromLs = () => {
 
 const App = () => {
   const [cart, setCart] = useState(getCartFromLs());
+  console.log(cart);
   return (
     <div>
       <div>
@@ -27,6 +29,7 @@ const App = () => {
           element={<Products db={db} cart={cart} setCart={setCart} />}
         />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="cart" element={<Cart cart={cart} />} />
       </Routes>
     </div>
   );
