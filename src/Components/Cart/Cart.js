@@ -25,13 +25,19 @@ const Cart = ({ cart, setCart }) => {
   };
 
   const reduceQtyInCart = (product) => {
-    const newCart = cart.map((item) => {
-      if (item.id === product.id) {
-        return { ...item, quantity: item.quantity - 1 };
+    if (product.quantity <= 1) {
+      if (window.confirm("Do you want to remove this item from cart?")) {
+        setCart((prev) => prev.filter((item) => item.id !== product.id));
       }
-      return item;
-    });
-    setCart(newCart);
+    } else {
+      const newCart = cart.map((item) => {
+        if (item.id === product.id) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      });
+      setCart(newCart);
+    }
   };
 
   const EmptyCart = () => (
