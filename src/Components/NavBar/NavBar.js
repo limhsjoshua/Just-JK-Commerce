@@ -5,11 +5,9 @@ import {
   Toolbar,
   IconButton,
   Badge,
-  MenuItem,
-  Menu,
   Typography,
 } from "@material-ui/core";
-import { CallMissedSharp, ShoppingCart } from "@material-ui/icons";
+import { ShoppingCart } from "@material-ui/icons";
 import logo from "../../assets/jklogo.png";
 import useStyles from "./styles";
 
@@ -31,7 +29,6 @@ const NavBar = ({ cart }) => {
           <div className={classes.grow} />
           <div className={classes.button} />
           <Link to="products">Products </Link>
-          <Link to="checkout">Checkout</Link>
           <Link to="cart">
             <IconButton aria-label="Show cart items" color="inherit">
               <Badge
