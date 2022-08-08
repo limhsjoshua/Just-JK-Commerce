@@ -32,11 +32,13 @@ const NavBar = ({ cart }) => {
           <div className={classes.button} />
           <Link to="products">Products </Link>
           <Link to="checkout">Checkout</Link>
-          <IconButton aria-label="Show cart items" color="inherit">
-            <Badge badgeContent={cart.length} color="secondary">
-              <ShoppingCart />
-            </Badge>
-          </IconButton>
+          <Link to="cart">
+            <IconButton aria-label="Show cart items" color="inherit">
+              <Badge badgeContent={cart.length} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
