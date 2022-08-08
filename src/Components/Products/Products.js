@@ -12,7 +12,7 @@ const Products = ({ db, cart, setCart }) => {
     const querySnapshot = await getDocs(collection(db, "products"));
     const tempProducts = [];
     querySnapshot.forEach((doc) => {
-      tempProducts.push(doc.data());
+      tempProducts.push({ ...doc.data(), id: doc.id });
     });
     setProducts(tempProducts);
   };
