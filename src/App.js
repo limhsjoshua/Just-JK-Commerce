@@ -26,7 +26,7 @@ const App = () => {
           path="products"
           element={<Products db={db} cart={cart} setCart={setCart} />}
         />
-        <Route path="checkout" element={<Checkout />} />
+        <Route path="checkout" element={<Checkout cart={cart} />} />
       </Routes>
     </div>
   );
