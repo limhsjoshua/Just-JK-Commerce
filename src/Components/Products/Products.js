@@ -1,9 +1,10 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Product from "./Product/Product";
 import useStyles from "./styles";
+import { collection, getDocs } from "firebase/firestore";
 
-const products = [
+const defProducts = [
   {
     id: 1,
     name: "Table",
@@ -30,8 +31,25 @@ const products = [
   },
 ];
 
-const Products = () => {
+const Products = ({ db }) => {
   const classes = useStyles();
+  const [products, setProducts] = useState([]);
+  // no need state for cart because it is local storage
+
+  const getProducts = async () => {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    const tempProducts = [];
+    querySnapshot.forEach((doc) => {
+      tempProducts.push(doc.data());
+      console.log(doc.id, "=>", doc.data());
+    });
+    setProducts(tempProducts);
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />

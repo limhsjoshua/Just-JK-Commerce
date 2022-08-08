@@ -15,22 +15,20 @@ import React from "react";
 const Product = ({ product }) => {
   const classes = useStyles();
 
+  const { name, price, photo, description } = product;
+
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={product.image}
-        title={product.name}
-      />
+      <CardMedia className={classes.media} image={photo} title={name} />
       <CardContent>
         <div className={classes.cardContent}>
           <Typography variant="h5" gutterBottom>
-            {product.name}
+            {name}
           </Typography>
-          <Typography variant="h5">{product.price}</Typography>
+          <Typography variant="h5">{price}</Typography>
         </div>
         <Typography variant="body2" color="textSecondary">
-          {product.description}
+          {description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
