@@ -2,8 +2,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 
 export default function CheckoutItem({ item, idx }) {
-  const { name, price, photo, description } = item;
-  const quantity = 1;
+  const { name, price, photo, description, quantity } = item;
 
   return (
     <TableRow>
