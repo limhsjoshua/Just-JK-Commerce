@@ -3,7 +3,7 @@ import Products from "./Components/Products/Products";
 import Checkout from "./Components/Checkout/Checkout";
 import Payment from "./Components/Payment/Payment";
 import ConfirmShipped from "./Components/ConfirmShipped/ConfirmShipped";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import db from "./util/Firebase";
 import NavBar from "./Components/NavBar/NavBar";
@@ -19,6 +19,11 @@ const getCartFromLs = () => {
 
 const App = () => {
   const [cart, setCart] = useState(getCartFromLs());
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   console.log(cart);
   return (
     <div>

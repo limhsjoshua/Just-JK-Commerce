@@ -21,10 +21,6 @@ const Products = ({ db, cart, setCart }) => {
     getProducts();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
   const addToCart = (product) => {
     // if product is already in cart, increase quantity
     if (cart.find((item) => item.id === product.id)) {
