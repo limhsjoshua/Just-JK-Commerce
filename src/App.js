@@ -1,8 +1,10 @@
 import "./App.css";
 import Products from "./Components/Products/Products";
 import Checkout from "./Components/Checkout/Checkout";
+import Payment from "./Components/Payment/Payment";
+import ConfirmShipped from "./Components/ConfirmShipped/ConfirmShipped";
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import db from "./util/Firebase";
 import NavBar from "./Components/NavBar/NavBar";
 import Cart from "./Components/Cart/Cart";
@@ -31,9 +33,11 @@ const App = () => {
           element={<Products db={db} cart={cart} setCart={setCart} />}
         />
         <Route path="cart" element={<Cart cart={cart} setCart={setCart} />} />
-        <Route path="checkout" element={<Checkout cart={cart} />} />
         <Route path="auth" element={<Auth />} />
         <Route path="signup" element={<SignUp />} />
+        <Route path="checkout" element={<Checkout db={db} cart={cart} />} />
+        <Route path="payment" element={<Payment db={db} />} />
+        <Route path="confirm-shipped" element={<ConfirmShipped db={db} />} />
       </Routes>
     </div>
   );

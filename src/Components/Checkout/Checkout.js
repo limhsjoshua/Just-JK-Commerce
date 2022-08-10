@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
@@ -13,6 +14,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import FormGroup from "@material-ui/core/FormGroup";
+import { addDoc, collection } from "firebase/firestore";
 
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Name is required"),
@@ -28,7 +30,18 @@ const validationSchema = yup.object({
 
 const deliveryPrices = { standard: 1.99, express: 4.99 };
 
-export default function Checkout({ cart }) {
+export default function Checkout({ db, cart }) {
+  const [order, setOrder] = useState(null);
+
+  const createNewOrder = async (order) => {
+    try {
+      const docRef = await addDoc(collection(db, "orders"), order);
+      setOrder({ ...order, id: docRef.id });
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -37,9 +50,14 @@ export default function Checkout({ cart }) {
       delivery: "standard",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      const data = { ...values, products: cart, total: total };
-      console.log(data);
+    onSubmit: async (values) => {
+      const data = {
+        ...values,
+        products: cart,
+        total: total,
+        status: "checkout",
+      };
+      await createNewOrder(data);
     },
   });
 
@@ -127,6 +145,13 @@ export default function Checkout({ cart }) {
           </Button>
         </FormGroup>
       </form>
+      {order && (
+        <Link to="/payment" state={{ order }}>
+          <Button color="primary" variant="contained" type="submit">
+            Proceed to payment
+          </Button>
+        </Link>
+      )}
     </div>
   );
 }
