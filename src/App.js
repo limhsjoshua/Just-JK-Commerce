@@ -10,6 +10,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import Cart from "./Components/Cart/Cart";
 import LogIn from "./Components/LogIn/LogIn";
 import SignUp from "./Components/SignUp/SignUp";
+import Orders from "./Components/Orders/Orders";
 
 const getCartFromLs = () => {
   const cart = localStorage.getItem("cart");
@@ -53,6 +54,12 @@ const App = () => {
         <Route path="checkout" element={<Checkout db={db} cart={cart} />} />
         <Route path="payment" element={<Payment db={db} />} />
         <Route path="confirm-shipped" element={<ConfirmShipped db={db} />} />
+        <Route
+          path="orders"
+          element={
+            <Orders cart={cart} user={user} setUser={setUser} auth={auth} />
+          }
+        />
       </Routes>
     </div>
   );
