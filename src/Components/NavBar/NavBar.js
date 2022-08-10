@@ -7,10 +7,11 @@ import {
   Badge,
   Typography,
 } from "@material-ui/core";
-import { ShoppingCart, PersonOutline, ExitToApp } from "@material-ui/icons";
+import { PersonOutline, ExitToApp } from "@material-ui/icons";
 import logo from "../../assets/jklogo.png";
 import useStyles from "./styles";
 import { signOut } from "firebase/auth";
+import CartDropdown from "../CartDropdown/CartDropdown";
 
 const NavBar = ({ cart, user, setUser, auth }) => {
   let navigate = useNavigate();
@@ -52,16 +53,7 @@ const NavBar = ({ cart, user, setUser, auth }) => {
             </Link>
           )}
           {user && <ExitToApp onClick={handleLogOut} />}
-          <Link to="/cart">
-            <IconButton aria-label="Show cart items" color="inherit">
-              <Badge
-                badgeContent={cart.reduce((a, b) => a + b.quantity, 0)}
-                color="secondary"
-              >
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </Link>
+          <CartDropdown cart={cart} />
         </Toolbar>
       </AppBar>
     </div>
