@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -7,11 +7,27 @@ import {
   Badge,
   Typography,
 } from "@material-ui/core";
-import { ShoppingCart } from "@material-ui/icons";
+import { ShoppingCart, PersonOutline, ExitToApp } from "@material-ui/icons";
 import logo from "../../assets/jklogo.png";
 import useStyles from "./styles";
+import { signOut } from "firebase/auth";
 
-const NavBar = ({ cart }) => {
+const NavBar = ({ cart, user, setUser, auth }) => {
+  let navigate = useNavigate();
+
+  const handleLogOut = () => {
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+        navigate("/", { replace: true });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
+
   const classes = useStyles();
   return (
     <div>
@@ -28,8 +44,14 @@ const NavBar = ({ cart }) => {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.button} />
-          <Link to="products">Products </Link>
-          <Link to="cart">
+          <Link to="/products">Products </Link>
+          {!user && (
+            <Link to="/login">
+              <PersonOutline />
+            </Link>
+          )}
+          {user && <ExitToApp onClick={handleLogOut} />}
+          <Link to="/cart">
             <IconButton aria-label="Show cart items" color="inherit">
               <Badge
                 badgeContent={cart.reduce((a, b) => a + b.quantity, 0)}

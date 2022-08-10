@@ -8,7 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import { db, auth } from "./util/Firebase";
 import NavBar from "./Components/NavBar/NavBar";
 import Cart from "./Components/Cart/Cart";
-import Auth from "./Components/Auth/Auth";
+import LogIn from "./Components/LogIn/LogIn";
 import SignUp from "./Components/SignUp/SignUp";
 
 const getCartFromLs = () => {
@@ -34,7 +34,7 @@ const App = () => {
         <h1>{user ? "Logged in" : "no user"}</h1>
       </div>
       <div>
-        <NavBar cart={cart} />
+        <NavBar cart={cart} user={user} setUser={setUser} auth={auth} />
       </div>
       <Routes>
         <Route
@@ -43,8 +43,8 @@ const App = () => {
         />
         <Route path="cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route
-          path="auth"
-          element={<Auth auth={auth} setUser={setUser} user={user} />}
+          path="login"
+          element={<LogIn auth={auth} setUser={setUser} user={user} />}
         />
         <Route
           path="signup"
