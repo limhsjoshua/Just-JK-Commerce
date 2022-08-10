@@ -57,12 +57,7 @@ const App = () => {
         />
         <Route path="payment" element={<Payment db={db} />} />
         <Route path="confirm-shipped" element={<ConfirmShipped db={db} />} />
-        <Route
-          path="orders"
-          element={
-            <Orders cart={cart} user={user} setUser={setUser} auth={auth} />
-          }
-        />
+        <Route path="orders" element={<Orders db={db} user={user} />} />
       </Routes>
     </div>
   );

@@ -45,6 +45,7 @@ const NavBar = ({ cart, user, setUser, auth }) => {
           <div className={classes.grow} />
           <div className={classes.button} />
           <Link to="/products">Products </Link>
+          {user && <Link to="/orders">Orders </Link>}
           {!user && (
             <Link to="/login">
               <PersonOutline />

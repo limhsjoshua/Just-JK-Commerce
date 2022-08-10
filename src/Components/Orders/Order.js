@@ -9,10 +9,16 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import CheckoutItem from "../Checkout/CheckoutItem";
+import Chip from "@material-ui/core/Chip";
+import OrderItem from "./OrderItem";
+
+const getChipColor = (status) => {
+  const map = { checkout: "secondary", paid: "primary", shipped: "success" };
+  return map[status];
+};
 
 export const Order = ({ order }) => {
-  const placeholder = [];
+  const { id, products, status } = order;
 
   return (
     <Accordion>
@@ -21,7 +27,8 @@ export const Order = ({ order }) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        Product Information
+        Order {id}
+        <Chip label={status} size="small" color={getChipColor(status)} />
       </AccordionSummary>
       <AccordionDetails>
         <TableContainer>
@@ -37,8 +44,8 @@ export const Order = ({ order }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {placeholder.map((item, idx) => (
-                <CheckoutItem key={`item${item.id}`} item={item} idx={idx} />
+              {products.map((item, idx) => (
+                <OrderItem key={`item${item.id}`} item={item} idx={idx} />
               ))}
             </TableBody>
           </Table>
