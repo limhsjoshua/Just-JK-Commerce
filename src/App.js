@@ -11,6 +11,7 @@ import Cart from "./Components/Cart/Cart";
 import LogIn from "./Components/LogIn/LogIn";
 import SignUp from "./Components/SignUp/SignUp";
 import Orders from "./Components/Orders/Orders";
+import Landing from "./Components/Landing/Landing";
 
 const getCartFromLs = () => {
   const cart = localStorage.getItem("cart");
@@ -32,7 +33,7 @@ const App = () => {
   return (
     <div>
       <div style={{ marginTop: 100 }}>
-        <h1>{user ? "Logged in" : "no user"}</h1>
+        <p>{user ? "Logged in" : "no user"}</p>
       </div>
       <div>
         <NavBar cart={cart} user={user} setUser={setUser} auth={auth} />
@@ -58,6 +59,7 @@ const App = () => {
         <Route path="payment" element={<Payment db={db} />} />
         <Route path="confirm-shipped" element={<ConfirmShipped db={db} />} />
         <Route path="orders" element={<Orders db={db} user={user} />} />
+        <Route path="/" element={<Landing />} />
       </Routes>
     </div>
   );
