@@ -6,16 +6,39 @@ import {
   TextField,
   Divider,
 } from "@material-ui/core";
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
-const SignUp = () => {
-  const [signUp, setSignUp] = useState({
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-  });
+const SignUp = ({ auth, setUser, user }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="SignUp">
@@ -40,15 +63,30 @@ const SignUp = () => {
             Sign Up
           </Typography>
           <br />
-          <TextField type={"email"} placeholder={"Email"} />
+          <TextField
+            type={"email"}
+            placeholder={"Email"}
+            value={email}
+            onChange={handleEmailChange}
+          />
           <br />
-          <TextField type={"password"} placeholder={"Password"} />
+          <TextField
+            type={"password"}
+            placeholder={"Password"}
+            value={password}
+            onChange={handlePasswordChange}
+          />
           <br />
           <TextField type={"text"} placeholder={"First Name"} />
           <br />
           <TextField type={"text"} placeholder={"Last Name"} />
           <br />
-          <Button variant="contained" type={"submit"} color="">
+          <Button
+            variant="contained"
+            type={"submit"}
+            color=""
+            onClick={handleSignUp}
+          >
             Create Account
           </Button>
           <br />

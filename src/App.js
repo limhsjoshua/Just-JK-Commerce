@@ -5,7 +5,7 @@ import Payment from "./Components/Payment/Payment";
 import ConfirmShipped from "./Components/ConfirmShipped/ConfirmShipped";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import db from "./util/Firebase";
+import { db, auth } from "./util/Firebase";
 import NavBar from "./Components/NavBar/NavBar";
 import Cart from "./Components/Cart/Cart";
 import Auth from "./Components/Auth/Auth";
@@ -21,6 +21,7 @@ const getCartFromLs = () => {
 
 const App = () => {
   const [cart, setCart] = useState(getCartFromLs());
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -29,6 +30,9 @@ const App = () => {
   console.log(cart);
   return (
     <div>
+      <div style={{ marginTop: 100 }}>
+        <h1>{user ? "Logged in" : "no user"}</h1>
+      </div>
       <div>
         <NavBar cart={cart} />
       </div>
@@ -38,8 +42,14 @@ const App = () => {
           element={<Products db={db} cart={cart} setCart={setCart} />}
         />
         <Route path="cart" element={<Cart cart={cart} setCart={setCart} />} />
-        <Route path="auth" element={<Auth />} />
-        <Route path="signup" element={<SignUp />} />
+        <Route
+          path="auth"
+          element={<Auth auth={auth} setUser={setUser} user={user} />}
+        />
+        <Route
+          path="signup"
+          element={<SignUp auth={auth} setUser={setUser} user={user} />}
+        />
         <Route path="checkout" element={<Checkout db={db} cart={cart} />} />
         <Route path="payment" element={<Payment db={db} />} />
         <Route path="confirm-shipped" element={<ConfirmShipped db={db} />} />

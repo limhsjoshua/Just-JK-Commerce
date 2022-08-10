@@ -7,13 +7,38 @@ import {
   Divider,
 } from "@material-ui/core";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-const Auth = () => {
-  const [auth, setAuth] = useState({
-    email: "",
-    password: "",
-  });
+const Auth = ({ auth, setUser, user }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleLoginButton = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="auth">
@@ -38,11 +63,26 @@ const Auth = () => {
             Login
           </Typography>
           <br />
-          <TextField type={"email"} placeholder={"Email"} />
+          <TextField
+            type={"email"}
+            placeholder={"Email"}
+            value={email}
+            onChange={handleEmailChange}
+          />
           <br />
-          <TextField type={"password"} placeholder={"Password"} />
+          <TextField
+            type={"password"}
+            placeholder={"Password"}
+            value={password}
+            onChange={handlePasswordChange}
+          />
           <br />
-          <Button variant="contained" type={"submit"} color="primary">
+          <Button
+            variant="contained"
+            type={"submit"}
+            color="primary"
+            onClick={handleLoginButton}
+          >
             Login
           </Button>
           <br />
