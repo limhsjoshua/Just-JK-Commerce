@@ -1,11 +1,12 @@
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import emailjs from "@emailjs/browser";
 import { doc, setDoc } from "firebase/firestore";
 
 export default function Payment({ db }) {
   const location = useLocation();
+  const navigate = useNavigate();
 
   if (!location.state)
     return (
@@ -56,6 +57,7 @@ export default function Payment({ db }) {
             console.log(error.text);
           }
         );
+      navigate("/orders", { replace: true });
     } catch (e) {
       console.error("Error updating document: ", e);
     }
