@@ -30,7 +30,7 @@ const validationSchema = yup.object({
 
 const deliveryPrices = { standard: 1.99, express: 4.99 };
 
-export default function Checkout({ db, cart }) {
+export default function Checkout({ db, cart, user }) {
   const [order, setOrder] = useState(null);
 
   const createNewOrder = async (order) => {
@@ -56,6 +56,7 @@ export default function Checkout({ db, cart }) {
         products: cart,
         total: total,
         status: "checkout",
+        userId: user.uid,
       };
       await createNewOrder(data);
     },

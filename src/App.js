@@ -51,7 +51,10 @@ const App = () => {
           path="signup"
           element={<SignUp auth={auth} setUser={setUser} user={user} />}
         />
-        <Route path="checkout" element={<Checkout db={db} cart={cart} />} />
+        <Route
+          path="checkout"
+          element={<Checkout db={db} cart={cart} user={user} />}
+        />
         <Route path="payment" element={<Payment db={db} />} />
         <Route path="confirm-shipped" element={<ConfirmShipped db={db} />} />
         <Route
