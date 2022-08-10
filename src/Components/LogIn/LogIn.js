@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-const Auth = ({ auth, setUser, user }) => {
+const LogIn = ({ auth, setUser, user }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -103,7 +103,7 @@ const Auth = ({ auth, setUser, user }) => {
   );
 };
 
-export default Auth;
+export default LogIn;
 
 //html
 //what state you need
