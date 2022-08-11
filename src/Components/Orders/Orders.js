@@ -10,6 +10,8 @@ import {
   setDoc,
 } from "firebase/firestore";
 import emailjs from "@emailjs/browser";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 
 const Orders = ({ db, user, setCart }) => {
   const location = useLocation();
@@ -98,10 +100,20 @@ const Orders = ({ db, user, setCart }) => {
   ));
 
   return (
-    <div style={{ marginTop: 100 }}>
-      <h1>My Orders</h1>
+    <Container style={{ marginTop: 80, marginBottom: 30 }}>
+      <Typography
+        variant="h4"
+        style={{
+          padding: 20,
+          fontFamily: "Merriweather",
+          fontWeight: "900",
+          marginBottom: 30,
+        }}
+      >
+        My Orders
+      </Typography>
       {OrderJsx}
-    </div>
+    </Container>
   );
 };
 
