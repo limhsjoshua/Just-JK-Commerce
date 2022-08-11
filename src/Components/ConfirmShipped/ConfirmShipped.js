@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { Button } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 
 export default function ConfirmShipped({ db }) {
   const [confirmation, setConfirmation] = useState(false);
@@ -35,50 +37,162 @@ export default function ConfirmShipped({ db }) {
 
   if (order === null) {
     return (
-      <div style={{ marginTop: 100 }}>
-        <p>Loading...</p>
-      </div>
+      <Container style={{ marginTop: 80, marginBottom: 30 }}>
+        <Typography
+          variant="body1"
+          style={{
+            paddingLeft: 20,
+            paddingTop: 20,
+            fontFamily: "Merriweather",
+            fontWeight: "300",
+          }}
+        >
+          Loading...
+        </Typography>
+      </Container>
     );
   }
 
   if (order !== null) {
     if (order === false) {
       return (
-        <div style={{ marginTop: 100 }}>
-          <p>Invalid Order Id</p>
-        </div>
+        <Container style={{ marginTop: 80, marginBottom: 30 }}>
+          <Typography
+            variant="body1"
+            style={{
+              paddingLeft: 20,
+              paddingTop: 20,
+              fontFamily: "Merriweather",
+              fontWeight: "300",
+            }}
+          >
+            Invalid Order Id
+          </Typography>
+        </Container>
       );
     }
     if (order.status === "shipped") {
       return (
-        <div style={{ marginTop: 100 }}>
-          <p>Order {order.id} has already been shipped!</p>
-        </div>
+        <Container style={{ marginTop: 80, marginBottom: 30 }}>
+          <Typography
+            variant="body1"
+            style={{
+              paddingLeft: 20,
+              paddingTop: 20,
+              fontFamily: "Merriweather",
+              fontWeight: "300",
+            }}
+          >
+            Order {order.id} has already been shipped!
+          </Typography>
+        </Container>
       );
     } else if (order.status !== "paid") {
       return (
-        <div style={{ marginTop: 100 }}>
-          <p>
+        <Container style={{ marginTop: 80, marginBottom: 30 }}>
+          <Typography
+            variant="body1"
+            style={{
+              paddingLeft: 20,
+              paddingTop: 20,
+              fontFamily: "Merriweather",
+              fontWeight: "300",
+            }}
+          >
             Order {order.id} still processing, should not be ready for shipping
             yet
-          </p>
-        </div>
+          </Typography>
+        </Container>
       );
     }
   }
 
   if (confirmation) {
     return (
-      <div style={{ marginTop: 100 }}>
-        <p>Order status for order {order.id} updated! Thank you!</p>
-      </div>
+      <Container style={{ marginTop: 80, marginBottom: 30 }}>
+        <Typography
+          variant="body1"
+          style={{
+            paddingLeft: 20,
+            paddingTop: 20,
+            fontFamily: "Merriweather",
+            fontWeight: "300",
+          }}
+        >
+          Order status for order {order.id} updated! Thank you!
+        </Typography>
+      </Container>
     );
   }
 
+  const productsJsx = order.products.map((product) => (
+    <li>
+      {product.quantity} x {product.name}
+    </li>
+  ));
+
   return (
-    <div style={{ marginTop: 100 }}>
-      <h1>Confirm that these items have been shipped?</h1>
-      <Button onClick={handleClick}>Confirm</Button>
-    </div>
+    <Container style={{ marginTop: 80, marginBottom: 30 }}>
+      <Typography
+        variant="h4"
+        style={{
+          padding: 20,
+          fontFamily: "Merriweather",
+          fontWeight: "900",
+          marginBottom: 30,
+        }}
+      >
+        Shipping Checklist
+      </Typography>
+      <Typography
+        variant="body1"
+        style={{
+          paddingLeft: 20,
+          fontFamily: "Merriweather",
+          fontWeight: "300",
+        }}
+      >
+        Have the following items been packed?
+      </Typography>
+      <div
+        style={{
+          paddingLeft: 20,
+          marginTop: 30,
+          marginBottom: 30,
+          fontFamily: "Merriweather",
+        }}
+      >
+        <ul>
+          {productsJsx}
+          <li>
+            <b>
+              {order.delivery[0].toUpperCase() + order.delivery.substring(1)}{" "}
+              shipping to {order.address}
+            </b>
+          </li>
+        </ul>
+      </div>
+      <div
+        style={{
+          paddingLeft: 20,
+          marginTop: 30,
+          marginBottom: 30,
+        }}
+      >
+        <Button
+          size="large"
+          style={{
+            fontFamily: "Merriweather",
+            backgroundColor: "black",
+            color: "white",
+            paddingLeft: 50,
+            paddingRight: 50,
+          }}
+          onClick={handleClick}
+        >
+          Confirm
+        </Button>
+      </div>
+    </Container>
   );
 }
