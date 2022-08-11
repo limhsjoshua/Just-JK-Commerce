@@ -41,7 +41,12 @@ export default function ProductsSideBar({
   return (
     <div>
       <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Sort By</FormLabel>
+        <FormLabel
+          id="demo-radio-buttons-group-label"
+          style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+        >
+          Sort By
+        </FormLabel>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           value={sort}
@@ -79,9 +84,19 @@ export default function ProductsSideBar({
       <br />
       <br />
       <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Filter By</FormLabel>
+        <FormLabel
+          id="demo-radio-buttons-group-label"
+          style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+        >
+          Filter By
+        </FormLabel>
         <FormGroup>
-          <FormLabel id="demo-radio-buttons-group-label">Category</FormLabel>
+          <FormLabel
+            id="demo-radio-buttons-group-label"
+            style={{ fontFamily: "Merriweather" }}
+          >
+            Category
+          </FormLabel>
           {categories.map((category, idx) => (
             <FormControlLabel
               key={`category-${idx}`}
@@ -95,7 +110,12 @@ export default function ProductsSideBar({
             />
           ))}
           <br />
-          <FormLabel id="demo-radio-buttons-group-label">Collection</FormLabel>
+          <FormLabel
+            id="demo-radio-buttons-group-label"
+            style={{ fontFamily: "Merriweather" }}
+          >
+            Collection
+          </FormLabel>
           {collections.map((collection, idx) => (
             <FormControlLabel
               key={`collection-${idx}`}

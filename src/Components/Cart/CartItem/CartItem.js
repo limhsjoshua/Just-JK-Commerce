@@ -12,7 +12,9 @@ export default function CartItem({ item, idx, addQtyInCart, reduceQtyInCart }) {
 
   return (
     <TableRow>
-      <TableCell align="center">{idx + 1}</TableCell>
+      <TableCell style={{ fontFamily: "Merriweather" }} align="center">
+        {idx + 1}
+      </TableCell>
       <TableCell align="center">
         <img
           alt={description}
@@ -20,14 +22,23 @@ export default function CartItem({ item, idx, addQtyInCart, reduceQtyInCart }) {
           style={{ width: "130px", height: "130px" }}
         />
       </TableCell>
-      <TableCell align="left">{name}</TableCell>
-      <TableCell align="center">{price}</TableCell>
-      <TableCell align="center">
+      <TableCell style={{ fontFamily: "Merriweather" }} align="left">
+        {name}
+      </TableCell>
+      <TableCell style={{ fontFamily: "Merriweather" }} align="center">
+        {price}
+      </TableCell>
+      <TableCell style={{ fontFamily: "Merriweather" }} align="center">
         <button onClick={handleReduceQtyInCart}>-</button>
         <span>{quantity}</span>
         <button onClick={handleAddQtyInCart}>+</button>
       </TableCell>
-      <TableCell align="center">{(price * quantity).toFixed(2)}</TableCell>
+      <TableCell
+        style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+        align="center"
+      >
+        {(price * quantity).toFixed(2)}
+      </TableCell>
     </TableRow>
   );
 }

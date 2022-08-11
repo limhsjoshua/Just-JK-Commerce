@@ -48,7 +48,14 @@ const Cart = ({ cart, setCart }) => {
   };
 
   const EmptyCart = () => (
-    <Typography variant="subtitle1">
+    <Typography
+      variant="subtitle1"
+      style={{
+        fontFamily: "Merriweather",
+        fontWeight: "900",
+        marginTop: "50px",
+      }}
+    >
       You have no items in your shopping cart.
     </Typography>
   );
@@ -59,12 +66,41 @@ const Cart = ({ cart, setCart }) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell align="center">S/N</TableCell>
-              <TableCell align="center">Product</TableCell>
-              <TableCell align="left">Product Name</TableCell>
-              <TableCell align="center">Unit Price</TableCell>
-              <TableCell align="center">Quantity</TableCell>
-              <TableCell align="center">Total Price</TableCell>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+              >
+                S/N
+              </TableCell>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                align="center"
+              >
+                Product
+              </TableCell>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                align="left"
+              >
+                Product Name
+              </TableCell>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                align="center"
+              >
+                Unit Price
+              </TableCell>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                align="center"
+              >
+                Quantity
+              </TableCell>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                align="center"
+              >
+                Total Price
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -81,7 +117,10 @@ const Cart = ({ cart, setCart }) => {
         </Table>
       </TableContainer>
       <div className={classes.cardDetails}>
-        <Typography variant="h4">
+        <Typography
+          variant="h4"
+          style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+        >
           Subtotal: {cart.reduce((a, b) => a + b.price, 0).toFixed(2)}
         </Typography>
         <div>
@@ -90,18 +129,23 @@ const Cart = ({ cart, setCart }) => {
             size="large"
             type="button"
             variant="contained"
-            color="secondary"
+            color="default"
             onClick={emptyCart}
           >
             Empty Cart
           </Button>
-          <Link to="/checkout">
+          <Link to="/checkout" style={{ textDecoration: "none" }}>
             <Button
               className={classes.checkoutButton}
               size="large"
               type="button"
               variant="contained"
               color="primary"
+              style={{
+                backgroundColor: "black",
+                color: "white",
+                // padding: "5px 45px",
+              }}
             >
               Checkout
             </Button>
@@ -114,7 +158,11 @@ const Cart = ({ cart, setCart }) => {
   return (
     <Container>
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3">
+      <Typography
+        className={classes.title}
+        variant="h3"
+        style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+      >
         {" "}
         Your Shopping Cart{" "}
       </Typography>
