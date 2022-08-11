@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
@@ -264,19 +263,28 @@ export default function Checkout({ db, cart, user }) {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            {"Proceed to payment page"}
+            <span style={{ fontFamily: "Merriweather", fontWeight: 900 }}>
+              {"Proceed to payment page"}
+            </span>
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              {paymentLink
-                ? "Please click on 'Proceed' to make payment. The link opens in a new tab."
-                : "Please wait while the payment link is generated"}
+              <span style={{ fontFamily: "Merriweather", fontWeight: 300 }}>
+                {paymentLink
+                  ? "Please click on 'Proceed' to make payment. The link opens in a new tab."
+                  : "Please wait while the payment link is generated"}
+              </span>
             </DialogContentText>
           </DialogContent>
           {paymentLink && (
             <DialogActions>
               <Button onClick={handleCloseCancel}>Cancel</Button>
-              <a href={paymentLink} target="_blank" rel="noopener noreferrer">
+              <a
+                href={paymentLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
                 <Button onClick={handleCloseProceed} autoFocus>
                   Proceed
                 </Button>

@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import CartItem from "./CartItem/CartItem";
 import { Link } from "react-router-dom";
 
-const Cart = ({ cart, setCart }) => {
+const Cart = ({ cart, setCart, user }) => {
   const classes = useStyles();
 
   const isEmpty = cart.length === 0;
@@ -139,7 +139,10 @@ const Cart = ({ cart, setCart }) => {
           >
             Empty Cart
           </Button>
-          <Link to="/checkout" style={{ textDecoration: "none" }}>
+          <Link
+            to={user ? "/checkout" : "/login"}
+            style={{ textDecoration: "none" }}
+          >
             <Button
               className={classes.checkoutButton}
               size="large"

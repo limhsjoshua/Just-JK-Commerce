@@ -57,7 +57,10 @@ const App = () => {
           path="products"
           element={<Products db={db} cart={cart} setCart={setCart} />}
         />
-        <Route path="cart" element={<Cart cart={cart} setCart={setCart} />} />
+        <Route
+          path="cart"
+          element={<Cart cart={cart} setCart={setCart} user={user} />}
+        />
         <Route
           path="login"
           element={<LogIn auth={auth} setUser={setUser} user={user} />}
