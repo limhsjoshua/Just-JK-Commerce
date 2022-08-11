@@ -1,5 +1,7 @@
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
+import Badge from "@material-ui/core/Badge";
+import "./CartItem.css";
 
 export default function CartItem({ item, idx, addQtyInCart, reduceQtyInCart }) {
   const { name, price, photo, description, quantity } = item;
@@ -26,18 +28,22 @@ export default function CartItem({ item, idx, addQtyInCart, reduceQtyInCart }) {
         {name}
       </TableCell>
       <TableCell style={{ fontFamily: "Merriweather" }} align="center">
-        {price}
+        ${price.toFixed(2)}
       </TableCell>
       <TableCell style={{ fontFamily: "Merriweather" }} align="center">
-        <button onClick={handleReduceQtyInCart}>-</button>
-        <span>{quantity}</span>
-        <button onClick={handleAddQtyInCart}>+</button>
+        <Badge className="qty-badge" onClick={handleReduceQtyInCart}>
+          -
+        </Badge>
+        <span style={{ marginLeft: 10, marginRight: 10 }}>{quantity}</span>
+        <Badge className="qty-badge" onClick={handleAddQtyInCart}>
+          +
+        </Badge>
       </TableCell>
       <TableCell
         style={{ fontFamily: "Merriweather", fontWeight: "900" }}
         align="center"
       >
-        {(price * quantity).toFixed(2)}
+        ${(price * quantity).toFixed(2)}
       </TableCell>
     </TableRow>
   );

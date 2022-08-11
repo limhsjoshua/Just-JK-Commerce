@@ -1,0 +1,8 @@
+.qty-badge{
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.qty-badge:hover {
+  background-color: rgb(233, 233, 233);
+}

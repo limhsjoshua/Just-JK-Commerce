@@ -68,6 +68,7 @@ const Cart = ({ cart, setCart }) => {
             <TableRow>
               <TableCell
                 style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                align="center"
               >
                 S/N
               </TableCell>
@@ -121,7 +122,7 @@ const Cart = ({ cart, setCart }) => {
           variant="h4"
           style={{ fontFamily: "Merriweather", fontWeight: "900" }}
         >
-          Subtotal: {cart.reduce((a, b) => a + b.price, 0).toFixed(2)}
+          Sub-Total: ${cart.reduce((a, b) => a + b.price, 0).toFixed(2)}
         </Typography>
         <div>
           <Button
@@ -131,6 +132,9 @@ const Cart = ({ cart, setCart }) => {
             variant="contained"
             color="default"
             onClick={emptyCart}
+            style={{
+              fontFamily: "Merriweather",
+            }}
           >
             Empty Cart
           </Button>
@@ -142,6 +146,7 @@ const Cart = ({ cart, setCart }) => {
               variant="contained"
               color="primary"
               style={{
+                fontFamily: "Merriweather",
                 backgroundColor: "black",
                 color: "white",
                 // padding: "5px 45px",
@@ -161,10 +166,13 @@ const Cart = ({ cart, setCart }) => {
       <Typography
         className={classes.title}
         variant="h3"
-        style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+        style={{
+          fontFamily: "Merriweather",
+          fontWeight: "900",
+          marginBottom: 30,
+        }}
       >
-        {" "}
-        Your Shopping Cart{" "}
+        Your Shopping Cart
       </Typography>
       {isEmpty ? <EmptyCart /> : <FilledCart />}
     </Container>
