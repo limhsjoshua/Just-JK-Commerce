@@ -79,7 +79,15 @@ const NavBar = ({ cart, user, setUser, auth }) => {
             Products{" "}
           </Link>
           {user && (
-            <Link to="/orders" style={{ color: "white", marginRight: 20 }}>
+            <Link
+              to="/orders"
+              style={{
+                fontFamily: "Rubik Maze",
+                color: "white",
+                marginRight: 20,
+                textDecoration: "none",
+              }}
+            >
               Orders{" "}
             </Link>
           )}
