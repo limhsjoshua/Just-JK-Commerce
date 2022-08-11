@@ -1,12 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Maze&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,900&display=swap");
 
-h1 {
+.diff-font {
   font-family: "Rubik Maze", cursive;
   font-size: 10rem;
   text-align: center;
   margin-top: 10px;
   font-weight: normal;
   margin-bottom: 10px;
+}
+
+.productsLink {
+  font-family: "Rubik Maze", cursive;
 }
 
 .glitch {

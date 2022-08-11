@@ -12,9 +12,20 @@ import logo from "../../assets/jklogo.png";
 import useStyles from "./styles";
 import { signOut } from "firebase/auth";
 import CartDropdown from "../CartDropdown/CartDropdown";
+import "./NavBar.css";
+// import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
 const NavBar = ({ cart, user, setUser, auth }) => {
   let navigate = useNavigate();
+
+  // const theme = createTheme({
+  //   typography: {
+  //     fontFamily: ["Rubik Maze", "cursive"].join(","),
+  //     // h6: {
+  //     //   fontSize: 65,
+  //     // },
+  //   },
+  // });
 
   const handleLogOut = () => {
     signOut(auth)
@@ -32,25 +43,48 @@ const NavBar = ({ cart, user, setUser, auth }) => {
   const classes = useStyles();
   return (
     <div>
-      <AppBar position="fixed" className={classes.appBar} color="inherit">
+      <AppBar
+        position="fixed"
+        className={classes.appBar}
+        style={{ backgroundColor: "black" }}
+      >
         <Toolbar>
-          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-            <Typography variant="h6" className={classes.title} color="inherit">
-              <img
-                src={logo}
-                alt="Just JK Commerce"
-                height="25px"
-                className={classes.image}
-              />
-              Just JK Commerce
-            </Typography>
+          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            {/* <ThemeProvider theme={theme}> */}
+            <p
+              style={{
+                fontFamily: "Rubik Maze",
+                fontSize: 40,
+                margin: 0,
+                padding: 0,
+              }}
+            >
+              {/* <img
+                  src={logo}
+                  alt="Just JK Commerce"
+                  height="25px"
+                  className={classes.image}
+                /> */}
+              JK
+            </p>
+            {/* </ThemeProvider> */}
           </Link>
           <div className={classes.grow} />
           <div className={classes.button} />
-          <Link to="/products">Products </Link>
-          {user && <Link to="/orders">Orders </Link>}
+          <Link
+            className="productsLink"
+            to="/products"
+            style={{ textDecoration: "none", color: "white", marginRight: 35 }}
+          >
+            Products{" "}
+          </Link>
+          {user && (
+            <Link to="/orders" style={{ color: "white", marginRight: 20 }}>
+              Orders{" "}
+            </Link>
+          )}
           {!user && (
-            <Link to="/login">
+            <Link to="/login" style={{ color: "white", marginRight: 20 }}>
               <PersonOutline />
             </Link>
           )}

@@ -32,7 +32,7 @@ export default function CartDropdown({ cart }) {
           badgeContent={cart.reduce((a, b) => a + b.quantity, 0)}
           color="secondary"
         >
-          <ShoppingCart />
+          <ShoppingCart style={{ color: "white" }} />
         </Badge>
       </IconButton>
       <Popover
