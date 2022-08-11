@@ -22,8 +22,13 @@ const Product = ({ product, addToCart }) => {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardMedia className={classes.media} image={photo} title={name} />
+    <Card className={classes.root} style={{ height: "100%" }}>
+      <CardMedia
+        style={{ height: 100 }}
+        className={classes.media}
+        image={photo}
+        title={name}
+      />
       <CardContent>
         <div className={classes.cardContent}>
           <Typography
@@ -34,7 +39,7 @@ const Product = ({ product, addToCart }) => {
             {name}
           </Typography>
           <Typography variant="h5" style={{ fontFamily: "Merriweather" }}>
-            {price}
+            ${price.toFixed(2)}
           </Typography>
         </div>
         <Typography

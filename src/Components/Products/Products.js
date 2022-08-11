@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Grid } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Product from "./Product/Product";
 import useStyles from "./styles";
@@ -109,7 +109,7 @@ const Products = ({ db, cart, setCart }) => {
           <div className={classes.toolbar} />
           <Grid container justifyContent="center" spacing={4}>
             {products.map((product) => (
-              <Grid item key={product.id}>
+              <Grid item key={product.id} xs={12} md={6} lg={4} xl={3}>
                 <Product product={product} addToCart={addToCart} />
               </Grid>
             ))}
