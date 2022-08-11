@@ -114,7 +114,21 @@ const Orders = ({ db, user, setCart }) => {
       >
         My Orders
       </Typography>
-      {OrderJsx}
+      {orders.length > 0 ? (
+        OrderJsx
+      ) : (
+        <Typography
+          variant="subtitle1"
+          style={{
+            fontFamily: "Merriweather",
+            fontWeight: "900",
+            marginTop: "50px",
+            paddingLeft: 20,
+          }}
+        >
+          You have no orders currently.
+        </Typography>
+      )}
     </Container>
   );
 };
