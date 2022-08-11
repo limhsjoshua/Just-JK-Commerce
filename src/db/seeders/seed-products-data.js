@@ -43,6 +43,12 @@ const photoUrls = {
   ],
 };
 
+const getRandomDate = (start, end) => {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+};
+
 const getProductsArray = () => {
   const products = [];
   for (let i = 0; i < 10; i += 1) {
@@ -51,6 +57,8 @@ const getProductsArray = () => {
       price: 17.9,
       description: `This is a ${designNames[i]} T-Shirt`,
       photo: `${photoUrls.tshirts[i]}`,
+      tags: [designNames[i], "T-Shirts"],
+      dateCreated: getRandomDate(new Date(2022, 5, 1), new Date()),
     });
   }
   for (let i = 0; i < 10; i += 1) {
@@ -59,6 +67,8 @@ const getProductsArray = () => {
       price: 14.9,
       description: `This is a ${designNames[i]} Hoodie`,
       photo: `${photoUrls.hoodies[i]}`,
+      tags: [designNames[i], "Hoodies"],
+      dateCreated: getRandomDate(new Date(2022, 5, 1), new Date()),
     });
   }
   return products;
