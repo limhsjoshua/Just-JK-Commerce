@@ -3,16 +3,34 @@ import { Grid } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Product from "./Product/Product";
 import useStyles from "./styles";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, query, orderBy, getDocs } from "firebase/firestore";
 import ProductsSideBar from "./ProductsSidebar/ProductsSideBar";
+
+const sortQueryMap = {
+  latest: orderBy("dateCreated", "asc"),
+  "highest-price": orderBy("price", "desc"),
+  "lowest-price": orderBy("price", "asc"),
+  "a-z": orderBy("name", "asc"),
+  "z-a": orderBy("name", "desc"),
+};
+
+const getFilterArr = (filterObj) => {
+  const filterArr = [];
+  for (const el in filterObj) {
+    if (filterObj[el]) filterArr.push(el);
+  }
+  return filterArr;
+};
 
 const Products = ({ db, cart, setCart }) => {
   const classes = useStyles();
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("latest");
-  const [filter, setFilter] = useState({
+  const [categoryFilter, setCategoryFilter] = useState({
     Hoodies: false,
     "T-Shirts": false,
+  });
+  const [collectionFilter, setCollectionFilter] = useState({
     "Localhost vs. Production": false,
     "Following Tutorial Code": false,
     "7 Hours Debugging": false,
@@ -26,17 +44,30 @@ const Products = ({ db, cart, setCart }) => {
   });
 
   const getProducts = async () => {
-    const querySnapshot = await getDocs(collection(db, "products"));
+    const q = query(collection(db, "products"), sortQueryMap[sort]);
+    const querySnapshot = await getDocs(q);
     const tempProducts = [];
+    getFilterArr(categoryFilter);
+    getFilterArr(collectionFilter);
     querySnapshot.forEach((doc) => {
-      tempProducts.push({ ...doc.data(), id: doc.id });
+      const product = doc.data();
+      const categoryFilterArr = getFilterArr(categoryFilter);
+      const collectionFilterArr = getFilterArr(collectionFilter);
+      if (
+        (categoryFilterArr.length === 0 ||
+          categoryFilterArr.includes(product.category)) &&
+        (collectionFilterArr.length === 0 ||
+          collectionFilterArr.includes(product.collection))
+      ) {
+        tempProducts.push({ ...doc.data(), id: doc.id });
+      }
     });
     setProducts(tempProducts);
   };
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [sort, categoryFilter, collectionFilter]);
 
   const addToCart = (product) => {
     // if product is already in cart, increase quantity
@@ -67,8 +98,10 @@ const Products = ({ db, cart, setCart }) => {
         <ProductsSideBar
           sort={sort}
           setSort={setSort}
-          filter={filter}
-          setFilter={setFilter}
+          categoryFilter={categoryFilter}
+          setCategoryFilter={setCategoryFilter}
+          collectionFilter={collectionFilter}
+          setCollectionFilter={setCollectionFilter}
         />
       </Box>
       <Box style={{ marginLeft: 200 }}>

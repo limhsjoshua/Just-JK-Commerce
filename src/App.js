@@ -12,6 +12,7 @@ import LogIn from "./Components/LogIn/LogIn";
 import SignUp from "./Components/SignUp/SignUp";
 import Orders from "./Components/Orders/Orders";
 import Landing from "./Components/Landing/Landing";
+import seedData from "./db/seeders/seed-products-data";
 
 const getCartFromLs = () => {
   const cart = localStorage.getItem("cart");
@@ -29,9 +30,11 @@ const App = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  console.log(cart);
   return (
     <div>
+      {/* <div style={{ marginTop: 100 }}>
+        <button onClick={seedData}>Seed</button>
+      </div> */}
       <div>
         <NavBar cart={cart} user={user} setUser={setUser} auth={auth} />
       </div>

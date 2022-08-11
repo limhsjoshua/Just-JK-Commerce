@@ -23,10 +23,17 @@ const collections = [
 ];
 
 const generateCheckbox = (filter) => {
-  return filter ? <Checkbox defaultChecked /> : <Checkbox />;
+  return filter ? <Checkbox checked /> : <Checkbox />;
 };
 
-export default function ProductsSideBar({ sort, setSort, filter, setFilter }) {
+export default function ProductsSideBar({
+  sort,
+  setSort,
+  categoryFilter,
+  setCategoryFilter,
+  collectionFilter,
+  setCollectionFilter,
+}) {
   const handleChangeSort = (e) => {
     setSort(e.target.value);
   };
@@ -37,7 +44,7 @@ export default function ProductsSideBar({ sort, setSort, filter, setFilter }) {
         <FormLabel id="demo-radio-buttons-group-label">Sort By</FormLabel>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue={sort}
+          value={sort}
           name="radio-buttons-group"
           onChange={handleChangeSort}
         >
@@ -77,10 +84,12 @@ export default function ProductsSideBar({ sort, setSort, filter, setFilter }) {
           <FormLabel id="demo-radio-buttons-group-label">Category</FormLabel>
           {categories.map((category) => (
             <FormControlLabel
-              control={generateCheckbox(filter[category])}
+              control={generateCheckbox(categoryFilter[category])}
               label={category}
               onChange={() => {
-                setFilter((prev) => ({ ...prev, [category]: !prev[category] }));
+                const newFilter = { ...categoryFilter };
+                newFilter[category] = !categoryFilter[category];
+                setCategoryFilter(newFilter);
               }}
             />
           ))}
@@ -88,13 +97,12 @@ export default function ProductsSideBar({ sort, setSort, filter, setFilter }) {
           <FormLabel id="demo-radio-buttons-group-label">Collection</FormLabel>
           {collections.map((collection) => (
             <FormControlLabel
-              control={generateCheckbox(filter[collection])}
+              control={generateCheckbox(collectionFilter[collection])}
               label={collection}
               onChange={() => {
-                setFilter((prev) => ({
-                  ...prev,
-                  [collection]: !prev[collection],
-                }));
+                const newFilter = { ...collectionFilter };
+                newFilter[collection] = !collectionFilter[collection];
+                setCollectionFilter(newFilter);
               }}
             />
           ))}
