@@ -56,27 +56,27 @@ export default function ProductsSideBar({
           <FormControlLabel
             value="latest"
             control={<Radio />}
-            label="Latest Arrival"
+            label={<span style={{ fontSize: "0.9em" }}>Latest Arrival</span>}
           />
           <FormControlLabel
             value="highest-price"
             control={<Radio />}
-            label="Highest Price"
+            label={<span style={{ fontSize: "0.9em" }}>Highest Price</span>}
           />
           <FormControlLabel
             value="lowest-price"
             control={<Radio />}
-            label="Lowest Price"
+            label={<span style={{ fontSize: "0.9em" }}>Lowest Price</span>}
           />
           <FormControlLabel
             value="a-z"
             control={<Radio />}
-            label="Name (A-Z)"
+            label={<span style={{ fontSize: "0.9em" }}>Name (A-Z)</span>}
           />
           <FormControlLabel
             value="z-a"
             control={<Radio />}
-            label="Name (Z-A)"
+            label={<span style={{ fontSize: "0.9em" }}>Name (Z-A)</span>}
           />
         </RadioGroup>
       </FormControl>
@@ -86,7 +86,11 @@ export default function ProductsSideBar({
       <FormControl>
         <FormLabel
           id="demo-radio-buttons-group-label"
-          style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+          style={{
+            fontFamily: "Merriweather",
+            fontWeight: "900",
+            marginBottom: 10,
+          }}
         >
           Filter By
         </FormLabel>
@@ -101,7 +105,7 @@ export default function ProductsSideBar({
             <FormControlLabel
               key={`category-${idx}`}
               control={generateCheckbox(categoryFilter[category])}
-              label={category}
+              label={<span style={{ fontSize: "0.9em" }}>{`${category}`}</span>}
               onChange={() => {
                 const newFilter = { ...categoryFilter };
                 newFilter[category] = !categoryFilter[category];
@@ -120,7 +124,9 @@ export default function ProductsSideBar({
             <FormControlLabel
               key={`collection-${idx}`}
               control={generateCheckbox(collectionFilter[collection])}
-              label={collection}
+              label={
+                <span style={{ fontSize: "0.9em" }}>{`${collection}`}</span>
+              }
               onChange={() => {
                 const newFilter = { ...collectionFilter };
                 newFilter[collection] = !collectionFilter[collection];
