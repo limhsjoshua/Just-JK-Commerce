@@ -34,15 +34,17 @@ const NavBar = ({ cart, user, setUser, auth }) => {
     <div>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <Typography variant="h6" className={classes.title} color="inherit">
-            <img
-              src={logo}
-              alt="Just JK Commerce"
-              height="25px"
-              className={classes.image}
-            />
-            Just JK Commerce
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+            <Typography variant="h6" className={classes.title} color="inherit">
+              <img
+                src={logo}
+                alt="Just JK Commerce"
+                height="25px"
+                className={classes.image}
+              />
+              Just JK Commerce
+            </Typography>
+          </Link>
           <div className={classes.grow} />
           <div className={classes.button} />
           <Link to="/products">Products </Link>
