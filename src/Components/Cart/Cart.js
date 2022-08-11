@@ -166,7 +166,7 @@ const Cart = ({ cart, setCart, user }) => {
   );
 
   return (
-    <Container style={{ marginTop: 12 }}>
+    <Container style={{ marginTop: 12, marginBottom: 30 }}>
       <div className={classes.toolbar} />
       <Typography
         variant="h4"
