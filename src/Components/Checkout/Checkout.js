@@ -55,7 +55,7 @@ export default function Checkout({ db, cart, user }) {
   const createNewOrder = async (order) => {
     try {
       const docRef = await addDoc(collection(db, "orders"), order);
-      const newOrder = { ...order, id: docRef.id };
+      const newOrder = { ...order, id: docRef.id, dateCreated: new Date() };
       await setDoc(doc(db, "orders", docRef.id), newOrder);
       setOrder(newOrder);
       const res = await axios.post(

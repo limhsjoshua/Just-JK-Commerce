@@ -7,7 +7,7 @@ import { collection, query, orderBy, getDocs } from "firebase/firestore";
 import ProductsSideBar from "./ProductsSidebar/ProductsSideBar";
 
 const sortQueryMap = {
-  latest: orderBy("dateCreated", "asc"),
+  latest: orderBy("dateCreated", "desc"),
   "highest-price": orderBy("price", "desc"),
   "lowest-price": orderBy("price", "asc"),
   "a-z": orderBy("name", "asc"),

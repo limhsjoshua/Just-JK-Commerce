@@ -13,7 +13,7 @@ import Chip from "@material-ui/core/Chip";
 import OrderItem from "./OrderItem";
 
 const getChipColor = (status) => {
-  const map = { checkout: "secondary", paid: "primary", shipped: "success" };
+  const map = { paid: "#f0ad4e", shipped: "#5cb85c" };
   return map[status];
 };
 
@@ -37,8 +37,11 @@ export const Order = ({ order }) => {
           <Chip
             label={status.toUpperCase()}
             size="small"
-            style={{ fontWeight: "normal", marginLeft: 20 }}
-            color={getChipColor(status)}
+            style={{
+              fontWeight: "normal",
+              marginLeft: 20,
+              backgroundColor: getChipColor(status),
+            }}
           />
           <br />
           <br />

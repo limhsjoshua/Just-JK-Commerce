@@ -8,6 +8,7 @@ import {
   where,
   doc,
   setDoc,
+  orderBy,
 } from "firebase/firestore";
 import emailjs from "@emailjs/browser";
 import Container from "@material-ui/core/Container";
@@ -73,7 +74,8 @@ const Orders = ({ db, user, setCart }) => {
     if (user) {
       const q = query(
         collection(db, "orders"),
-        where("userId", "==", user.uid || null)
+        where("userId", "==", user.uid || null),
+        orderBy("dateCreated", "desc")
       );
       getDocs(q)
         .then((res) => {
