@@ -1,5 +1,5 @@
 import { collection, writeBatch, doc } from "firebase/firestore";
-import db from "../../util/Firebase";
+import { db } from "../../util/Firebase";
 
 const designNames = [
   "Localhost vs. Production",
@@ -43,22 +43,34 @@ const photoUrls = {
   ],
 };
 
+const getRandomDate = (start, end) => {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+};
+
 const getProductsArray = () => {
   const products = [];
   for (let i = 0; i < 10; i += 1) {
     products.push({
       name: `${designNames[i]} T-Shirt`,
-      price: 17.9,
+      price: 14.9,
       description: `This is a ${designNames[i]} T-Shirt`,
       photo: `${photoUrls.tshirts[i]}`,
+      category: "T-Shirts",
+      collection: designNames[i],
+      dateCreated: getRandomDate(new Date(2022, 5, 1), new Date()),
     });
   }
   for (let i = 0; i < 10; i += 1) {
     products.push({
       name: `${designNames[i]} Hoodie`,
-      price: 14.9,
+      price: 19.9,
       description: `This is a ${designNames[i]} Hoodie`,
       photo: `${photoUrls.hoodies[i]}`,
+      category: "Hoodies",
+      collection: designNames[i],
+      dateCreated: getRandomDate(new Date(2022, 5, 1), new Date()),
     });
   }
   return products;
