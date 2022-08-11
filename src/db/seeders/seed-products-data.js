@@ -1,5 +1,5 @@
 import { collection, writeBatch, doc } from "firebase/firestore";
-import db from "../../util/Firebase";
+import { db } from "../../util/Firebase";
 
 const designNames = [
   "Localhost vs. Production",
