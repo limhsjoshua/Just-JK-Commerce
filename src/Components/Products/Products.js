@@ -107,7 +107,7 @@ const Products = ({ db, cart, setCart }) => {
       <Box style={{ marginLeft: 200 }}>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Grid container justify="center" spacing={4}>
+          <Grid container justifyContent="center" spacing={4}>
             {products.map((product) => (
               <Grid item key={product.id}>
                 <Product product={product} addToCart={addToCart} />

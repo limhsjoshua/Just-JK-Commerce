@@ -59,7 +59,7 @@ const SignUp = ({ auth, setUser, user }) => {
             boxShadow: "5px 5px 10px 0px rgba(0,0,0,0.75)",
           }}
         >
-          <Typography variant="h6" padding={3} textAlign="center">
+          <Typography variant="h6" padding={3}>
             Sign Up
           </Typography>
           <br />
@@ -81,12 +81,7 @@ const SignUp = ({ auth, setUser, user }) => {
           <br />
           <TextField type={"text"} placeholder={"Last Name"} />
           <br />
-          <Button
-            variant="contained"
-            type={"submit"}
-            color=""
-            onClick={handleSignUp}
-          >
+          <Button variant="contained" type={"submit"} onClick={handleSignUp}>
             Create Account
           </Button>
           <br />

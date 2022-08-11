@@ -59,7 +59,7 @@ const LogIn = ({ auth, setUser, user }) => {
             boxShadow: "5px 5px 10px 0px rgba(0,0,0,0.75)",
           }}
         >
-          <Typography variant="h6" padding={3} textAlign="center">
+          <Typography variant="h6" padding={3}>
             Login
           </Typography>
           <br />
@@ -88,12 +88,12 @@ const LogIn = ({ auth, setUser, user }) => {
           <br />
           <br />
           <br />
-          <Typography variant="h7" padding={3} textAlign="center">
+          <Typography variant="subtitle1" padding={3}>
             Don't have an account?
           </Typography>
           <br />
           <Link to="/signup" style={{ textDecoration: "none" }}>
-            <Button variant="contained" type={"submit"} color="">
+            <Button variant="contained" type={"submit"}>
               Create an account
             </Button>
           </Link>

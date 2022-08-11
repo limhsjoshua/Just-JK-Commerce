@@ -82,8 +82,9 @@ export default function ProductsSideBar({
         <FormLabel id="demo-radio-buttons-group-label">Filter By</FormLabel>
         <FormGroup>
           <FormLabel id="demo-radio-buttons-group-label">Category</FormLabel>
-          {categories.map((category) => (
+          {categories.map((category, idx) => (
             <FormControlLabel
+              key={`category-${idx}`}
               control={generateCheckbox(categoryFilter[category])}
               label={category}
               onChange={() => {
@@ -95,8 +96,9 @@ export default function ProductsSideBar({
           ))}
           <br />
           <FormLabel id="demo-radio-buttons-group-label">Collection</FormLabel>
-          {collections.map((collection) => (
+          {collections.map((collection, idx) => (
             <FormControlLabel
+              key={`collection-${idx}`}
               control={generateCheckbox(collectionFilter[collection])}
               label={collection}
               onChange={() => {
