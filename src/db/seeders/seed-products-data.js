@@ -54,20 +54,22 @@ const getProductsArray = () => {
   for (let i = 0; i < 10; i += 1) {
     products.push({
       name: `${designNames[i]} T-Shirt`,
-      price: 17.9,
+      price: 14.9,
       description: `This is a ${designNames[i]} T-Shirt`,
       photo: `${photoUrls.tshirts[i]}`,
-      tags: [designNames[i], "T-Shirts"],
+      category: "T-Shirts",
+      collection: designNames[i],
       dateCreated: getRandomDate(new Date(2022, 5, 1), new Date()),
     });
   }
   for (let i = 0; i < 10; i += 1) {
     products.push({
       name: `${designNames[i]} Hoodie`,
-      price: 14.9,
+      price: 19.9,
       description: `This is a ${designNames[i]} Hoodie`,
       photo: `${photoUrls.hoodies[i]}`,
-      tags: [designNames[i], "Hoodies"],
+      category: "Hoodies",
+      collection: designNames[i],
       dateCreated: getRandomDate(new Date(2022, 5, 1), new Date()),
     });
   }
