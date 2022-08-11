@@ -127,9 +127,3 @@ const LogIn = ({ auth, setUser, user }) => {
 };
 
 export default LogIn;
-
-//html
-//what state you need
-//what functions you need
-//where to place the functions
-//where are you going to place this entire componenet? as an entire page or or a component within a page
