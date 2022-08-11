@@ -7,20 +7,24 @@ const Orders = ({ db, user }) => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const q = query(
-      collection(db, "orders"),
-      where("userId", "==", user.uid || null)
-    );
-    getDocs(q).then((res) => {
-      const ordersFromDb = [];
-      res.forEach((doc) => ordersFromDb.push(doc.data()));
-      setOrders(ordersFromDb);
-    });
+    if (user) {
+      const q = query(
+        collection(db, "orders"),
+        where("userId", "==", user.uid || null)
+      );
+      getDocs(q).then((res) => {
+        const ordersFromDb = [];
+        res.forEach((doc) => ordersFromDb.push(doc.data()));
+        setOrders(ordersFromDb);
+      });
+    }
   }, []);
 
   if (!user) return <Navigate to="/" />;
 
-  const OrderJsx = orders.map((order) => <Order order={order} />);
+  const OrderJsx = orders.map((order, idx) => (
+    <Order key={`order-${idx}`} order={order} />
+  ));
 
   return (
     <div style={{ marginTop: 100 }}>
