@@ -12,6 +12,7 @@ import logo from "../../assets/jklogo.png";
 import useStyles from "./styles";
 import { signOut } from "firebase/auth";
 import CartDropdown from "../CartDropdown/CartDropdown";
+import axios from "axios";
 
 const NavBar = ({ cart, user, setUser, auth }) => {
   let navigate = useNavigate();
@@ -20,7 +21,14 @@ const NavBar = ({ cart, user, setUser, auth }) => {
     signOut(auth)
       .then(() => {
         setUser(null);
-        navigate("/", { replace: true });
+        return axios.delete("http://localhost:4242/delete-jwt", {
+          withCredentials: true,
+        });
+      })
+      .then(({ data }) => {
+        if (data.logout) {
+          navigate("/", { replace: true });
+        }
       })
       .catch((error) => {
         const errorCode = error.code;

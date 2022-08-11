@@ -14,7 +14,13 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import FormGroup from "@material-ui/core/FormGroup";
-import { addDoc, collection } from "firebase/firestore";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import axios from "axios";
+import { addDoc, collection, setDoc, doc } from "firebase/firestore";
 
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Name is required"),
@@ -32,11 +38,31 @@ const deliveryPrices = { standard: 1.99, express: 4.99 };
 
 export default function Checkout({ db, cart, user }) {
   const [order, setOrder] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [paymentLink, setPaymentLink] = useState(null);
+
+  const handleCloseCancel = () => {
+    setIsOpen(false);
+    // delete order
+    // redirect back to cart page
+  };
+
+  const handleCloseProceed = () => {
+    setIsOpen(false);
+  };
 
   const createNewOrder = async (order) => {
     try {
       const docRef = await addDoc(collection(db, "orders"), order);
-      setOrder({ ...order, id: docRef.id });
+      const newOrder = { ...order, id: docRef.id };
+      await setDoc(doc(db, "orders", docRef.id), newOrder);
+      setOrder(newOrder);
+      const res = await axios.post(
+        "http://localhost:4242/create-checkout-session",
+        { price: order.total * 100, order: newOrder }
+      );
+      setPaymentLink(res.data);
+      setIsOpen(true);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -147,11 +173,32 @@ export default function Checkout({ db, cart, user }) {
         </FormGroup>
       </form>
       {order && (
-        <Link to="/payment" state={{ order }}>
-          <Button color="primary" variant="contained" type="submit">
-            Proceed to payment
-          </Button>
-        </Link>
+        <Dialog
+          open={isOpen}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Proceed to payment page"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              {paymentLink
+                ? "Please click on 'Proceed' to make payment. The link opens in a new tab."
+                : "Please wait while the payment link is generated"}
+            </DialogContentText>
+          </DialogContent>
+          {paymentLink && (
+            <DialogActions>
+              <Button onClick={handleCloseCancel}>Cancel</Button>
+              <a href={paymentLink} target="_blank" rel="noopener noreferrer">
+                <Button onClick={handleCloseProceed} autoFocus>
+                  Proceed
+                </Button>
+              </a>
+            </DialogActions>
+          )}
+        </Dialog>
       )}
     </div>
   );

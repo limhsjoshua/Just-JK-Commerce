@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import axios from "axios";
 
 const LogIn = ({ auth, setUser, user }) => {
   const [email, setEmail] = useState("");
@@ -29,6 +30,11 @@ const LogIn = ({ auth, setUser, user }) => {
         // Signed in
         const user = userCredential.user;
         setUser(user);
+        axios.post(
+          "http://localhost:4242/generate-jwt",
+          { user: user },
+          { withCredentials: true }
+        );
       })
       .catch((error) => {
         const errorCode = error.code;

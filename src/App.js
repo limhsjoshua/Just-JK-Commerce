@@ -13,6 +13,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import Orders from "./Components/Orders/Orders";
 import Landing from "./Components/Landing/Landing";
 import seedData from "./db/seeders/seed-products-data";
+import axios from "axios";
 
 const getCartFromLs = () => {
   const cart = localStorage.getItem("cart");
@@ -26,9 +27,22 @@ const App = () => {
   const [cart, setCart] = useState(getCartFromLs());
   const [user, setUser] = useState(null);
 
+  console.log(user);
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+  const getUserIdFromJwt = async () => {
+    const { data } = await axios.get("http://localhost:4242/check-jwt", {
+      withCredentials: true,
+    });
+    setUser(data.user.user);
+  };
+
+  useEffect(() => {
+    getUserIdFromJwt();
+  }, []);
 
   return (
     <div>
