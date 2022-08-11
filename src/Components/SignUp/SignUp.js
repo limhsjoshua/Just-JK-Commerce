@@ -87,10 +87,10 @@ const SignUp = ({ auth, setUser, user }) => {
             onChange={handlePasswordChange}
           />
           <br />
-          <TextField type={"text"} placeholder={"First Name"} />
+          {/* <TextField type={"text"} placeholder={"First Name"} />
           <br />
           <TextField type={"text"} placeholder={"Last Name"} />
-          <br />
+          <br /> */}
           <Button
             variant="contained"
             type={"submit"}
