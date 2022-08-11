@@ -48,7 +48,14 @@ const Cart = ({ cart, setCart }) => {
   };
 
   const EmptyCart = () => (
-    <Typography variant="subtitle1">
+    <Typography
+      variant="subtitle1"
+      style={{
+        fontFamily: "Merriweather",
+        fontWeight: "900",
+        marginTop: "50px",
+      }}
+    >
       You have no items in your shopping cart.
     </Typography>
   );

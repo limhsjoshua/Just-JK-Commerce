@@ -54,33 +54,74 @@ export default function CartDropdown({ cart }) {
         onClose={handlePopoverClose}
         disableRestoreFocus
       >
-        <div>
-          <List>
-            {cart.map((item) => (
-              <CartDropdownItem key={item.id} item={item} />
-            ))}
-          </List>
+        <div style={{ minWidth: 400 }}>
+          {cart.length > 0 ? (
+            <List>
+              {cart.map((item) => (
+                <CartDropdownItem key={item.id} item={item} />
+              ))}
+            </List>
+          ) : (
+            // 'your cart is empty' text in cartdropdown
+            <p
+              style={{
+                textAlign: "center",
+                marginTop: "50px",
+                fontFamily: "Merriweather",
+                fontWeight: "900",
+              }}
+            >
+              Your cart is empty.
+            </p>
+          )}
+          {/* drop down cart */}
           <div
             style={{
               display: "flex",
               justifyContent: "center",
               minWidth: "100%",
+              marginBottom: "20px",
             }}
           >
-            <Link to="/cart" style={{ textDecoration: "none" }}>
-              <Button
-                variant="contained"
-                style={{
-                  minWidth: "100%",
-                  margin: 10,
-                  paddingLeft: 50,
-                  paddingRight: 50,
-                }}
-                onClick={handlePopoverClose}
-              >
-                View Cart
-              </Button>
-            </Link>
+            <div>
+              {cart.length > 0 ? (
+                <Link to="/cart" style={{ textDecoration: "none" }}>
+                  <Button
+                    variant="contained"
+                    style={{
+                      minWidth: "100%",
+                      margin: 10,
+                      paddingLeft: 50,
+                      paddingRight: 50,
+                      backgroundColor: "black",
+                      color: "white",
+                      fontFamily: "Merriweather",
+                    }}
+                    onClick={handlePopoverClose}
+                  >
+                    View Cart
+                  </Button>
+                </Link>
+              ) : (
+                <Link to="/products" style={{ textDecoration: "none" }}>
+                  <Button
+                    variant="contained"
+                    style={{
+                      minWidth: "100%",
+                      margin: 10,
+                      paddingLeft: 50,
+                      paddingRight: 50,
+                      backgroundColor: "black",
+                      color: "white",
+                      fontFamily: "Merriweather",
+                    }}
+                    onClick={handlePopoverClose}
+                  >
+                    Get shopping
+                  </Button>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </Popover>

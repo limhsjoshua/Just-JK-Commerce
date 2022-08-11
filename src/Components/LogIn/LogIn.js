@@ -59,7 +59,11 @@ const LogIn = ({ auth, setUser, user }) => {
             boxShadow: "5px 5px 10px 0px rgba(0,0,0,0.75)",
           }}
         >
-          <Typography variant="h6" padding={3}>
+          <Typography
+            variant="h6"
+            padding={3}
+            style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+          >
             Login
           </Typography>
           <br />
@@ -82,18 +86,31 @@ const LogIn = ({ auth, setUser, user }) => {
             type={"submit"}
             color="primary"
             onClick={handleLoginButton}
+            style={{ backgroundColor: "black", fontFamily: "Merriweather" }}
           >
             Login
           </Button>
           <br />
           <br />
           <br />
-          <Typography variant="subtitle1" padding={3}>
+          <Typography
+            variant="subtitle1"
+            padding={3}
+            style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+          >
             Don't have an account?
           </Typography>
           <br />
           <Link to="/signup" style={{ textDecoration: "none" }}>
-            <Button variant="contained" type={"submit"}>
+            <Button
+              variant="contained"
+              type={"submit"}
+              color="primary"
+              style={{
+                fontFamily: "Merriweather",
+                backgroundColor: "black",
+              }}
+            >
               Create an account
             </Button>
           </Link>
