@@ -31,6 +31,7 @@ export default function CartDropdown({ cart }) {
         <Badge
           badgeContent={cart.reduce((a, b) => a + b.quantity, 0)}
           color="secondary"
+          overlap="rectangular"
         >
           <ShoppingCart />
         </Badge>
