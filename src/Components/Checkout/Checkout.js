@@ -161,10 +161,10 @@ export default function Checkout({ db, cart, user }) {
             onChange={formik.handleChange}
           >
             <MenuItem value={"standard"}>
-              Standard (+${deliveryPrices.standard})
+              Standard (+${deliveryPrices.standard}) : 4-5 working days
             </MenuItem>
             <MenuItem value={"express"}>
-              Express (+${deliveryPrices.express})
+              Express (+${deliveryPrices.express}) : 2-3 working days
             </MenuItem>
           </Select>
           <Button color="primary" variant="contained" type="submit">
