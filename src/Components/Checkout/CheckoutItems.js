@@ -18,6 +18,10 @@ export default function CheckoutItems({ cart }) {
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
+        style={{
+          fontFamily: "Merriweather",
+          fontWeight: 900,
+        }}
       >
         Product Information
       </AccordionSummary>
@@ -26,12 +30,42 @@ export default function CheckoutItems({ cart }) {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="center">S/N</TableCell>
-                <TableCell align="center">Product</TableCell>
-                <TableCell align="left">Product Name</TableCell>
-                <TableCell align="center">Unit Price</TableCell>
-                <TableCell align="center">Quantity</TableCell>
-                <TableCell align="center">Total Price</TableCell>
+                <TableCell
+                  style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                  align="center"
+                >
+                  S/N
+                </TableCell>
+                <TableCell
+                  style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                  align="center"
+                >
+                  Product
+                </TableCell>
+                <TableCell
+                  style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                  align="left"
+                >
+                  Product Name
+                </TableCell>
+                <TableCell
+                  style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                  align="center"
+                >
+                  Unit Price
+                </TableCell>
+                <TableCell
+                  style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                  align="center"
+                >
+                  Quantity
+                </TableCell>
+                <TableCell
+                  style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                  align="center"
+                >
+                  Total Price
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

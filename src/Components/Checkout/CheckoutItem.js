@@ -6,18 +6,46 @@ export default function CheckoutItem({ item, idx }) {
 
   return (
     <TableRow>
-      <TableCell align="center">{idx + 1}</TableCell>
-      <TableCell align="center">
+      <TableCell
+        style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+        align="center"
+      >
+        {idx + 1}
+      </TableCell>
+      <TableCell
+        style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+        align="center"
+      >
         <img
           alt={description}
           src={photo}
           style={{ width: "130px", height: "130px" }}
         />
       </TableCell>
-      <TableCell align="left">{name}</TableCell>
-      <TableCell align="center">{price}</TableCell>
-      <TableCell align="center">{quantity}</TableCell>
-      <TableCell align="center">{(price * quantity).toFixed(2)}</TableCell>
+      <TableCell
+        style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+        align="left"
+      >
+        {name}
+      </TableCell>
+      <TableCell
+        style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+        align="center"
+      >
+        ${price.toFixed(2)}
+      </TableCell>
+      <TableCell
+        style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+        align="center"
+      >
+        {quantity}
+      </TableCell>
+      <TableCell
+        style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+        align="center"
+      >
+        ${(price * quantity).toFixed(2)}
+      </TableCell>
     </TableRow>
   );
 }

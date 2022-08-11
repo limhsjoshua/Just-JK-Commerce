@@ -119,10 +119,11 @@ const Cart = ({ cart, setCart }) => {
       </TableContainer>
       <div className={classes.cardDetails}>
         <Typography
-          variant="h4"
+          variant="h5"
           style={{ fontFamily: "Merriweather", fontWeight: "900" }}
         >
-          Sub-Total: ${cart.reduce((a, b) => a + b.price, 0).toFixed(2)}
+          Sub-Total: $
+          {cart.reduce((a, b) => a + b.price * b.quantity, 0).toFixed(2)}
         </Typography>
         <div>
           <Button
@@ -161,12 +162,12 @@ const Cart = ({ cart, setCart }) => {
   );
 
   return (
-    <Container>
+    <Container style={{ marginTop: 12 }}>
       <div className={classes.toolbar} />
       <Typography
-        className={classes.title}
-        variant="h3"
+        variant="h4"
         style={{
+          padding: 20,
           fontFamily: "Merriweather",
           fontWeight: "900",
           marginBottom: 30,

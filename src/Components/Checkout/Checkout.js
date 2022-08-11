@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -88,37 +90,85 @@ export default function Checkout({ db, cart, user }) {
     },
   });
 
-  const subTotal = cart.reduce((a, b) => a + b.price, 0).toFixed(2);
+  const subTotal = cart
+    .reduce((a, b) => a + b.price * b.quantity, 0)
+    .toFixed(2);
   const deliveryPrice = deliveryPrices[formik.values.delivery];
   const total = (Number(subTotal) + Number(deliveryPrice)).toFixed(2);
 
   return (
-    <div style={{ marginTop: 100 }}>
+    <Container style={{ marginTop: 80 }}>
+      <Typography
+        variant="h4"
+        style={{
+          padding: 20,
+          fontFamily: "Merriweather",
+          fontWeight: "900",
+          marginBottom: 30,
+        }}
+      >
+        Checkout
+      </Typography>
       <CheckoutItems cart={cart} />
       <TableContainer>
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell align="center">Sub-Total</TableCell>
-              <TableCell align="center">{subTotal}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align="center">Shipping</TableCell>
-              <TableCell align="center">{deliveryPrice}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align="center">
-                <b>Total</b>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+                align="center"
+              >
+                Sub-Total
               </TableCell>
-              <TableCell align="center">
-                <b>{total}</b>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+                align="center"
+              >
+                ${subTotal}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+                align="center"
+              >
+                Shipping
+              </TableCell>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "300" }}
+                align="center"
+              >
+                ${deliveryPrice}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                align="center"
+              >
+                Total
+              </TableCell>
+              <TableCell
+                style={{ fontFamily: "Merriweather", fontWeight: "900" }}
+                align="center"
+              >
+                ${total}
               </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
       <br />
-      <h3>Customer Information</h3>
+      <Typography
+        variant="body1"
+        style={{
+          padding: 20,
+          fontFamily: "Merriweather",
+          fontWeight: "900",
+        }}
+      >
+        Customer Information
+      </Typography>
       <form onSubmit={formik.handleSubmit}>
         <FormGroup>
           <TextField
@@ -130,6 +180,8 @@ export default function Checkout({ db, cart, user }) {
             onChange={formik.handleChange}
             error={formik.touched.name && Boolean(formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
+            inputProps={{ style: { fontFamily: "Merriweather" } }}
+            InputLabelProps={{ style: { fontFamily: "Merriweather" } }}
           />
           <TextField
             id="address"
@@ -142,6 +194,8 @@ export default function Checkout({ db, cart, user }) {
             onChange={formik.handleChange}
             error={formik.touched.address && Boolean(formik.errors.address)}
             helperText={formik.touched.address && formik.errors.address}
+            inputProps={{ style: { fontFamily: "Merriweather" } }}
+            InputLabelProps={{ style: { fontFamily: "Merriweather" } }}
           />
           <TextField
             id="email"
@@ -152,24 +206,55 @@ export default function Checkout({ db, cart, user }) {
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
+            inputProps={{ style: { fontFamily: "Merriweather" } }}
+            InputLabelProps={{ style: { fontFamily: "Merriweather" } }}
           />
-          <InputLabel>Delivery Type</InputLabel>
+          <InputLabel
+            style={{
+              marginTop: 20,
+              marginBottom: 10,
+              fontFamily: "Merriweather",
+              fontWeight: 900,
+            }}
+          >
+            Delivery Type
+          </InputLabel>
           <Select
             id="delivery"
             name="delivery"
             value={formik.values.delivery}
             onChange={formik.handleChange}
+            style={{ fontFamily: "Merriweather" }}
           >
-            <MenuItem value={"standard"}>
+            <MenuItem value={"standard"} style={{ fontFamily: "Merriweather" }}>
               Standard (+${deliveryPrices.standard}) : 4-5 working days
             </MenuItem>
-            <MenuItem value={"express"}>
+            <MenuItem value={"express"} style={{ fontFamily: "Merriweather" }}>
               Express (+${deliveryPrices.express}) : 2-3 working days
             </MenuItem>
           </Select>
-          <Button color="primary" variant="contained" type="submit">
-            Submit
-          </Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "right",
+              marginBottom: 50,
+            }}
+          >
+            <Button
+              variant="contained"
+              type="submit"
+              style={{
+                marginTop: 50,
+                fontFamily: "Merriweather",
+                backgroundColor: "black",
+                color: "white",
+                width: "30%",
+                // padding: "5px 45px",
+              }}
+            >
+              Submit
+            </Button>
+          </div>
         </FormGroup>
       </form>
       {order && (
@@ -200,6 +285,6 @@ export default function Checkout({ db, cart, user }) {
           )}
         </Dialog>
       )}
-    </div>
+    </Container>
   );
 }
