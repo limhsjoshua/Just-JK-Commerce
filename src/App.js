@@ -32,9 +32,6 @@ const App = () => {
   console.log(cart);
   return (
     <div>
-      <div style={{ marginTop: 100 }}>
-        <p>{user ? "Logged in" : "no user"}</p>
-      </div>
       <div>
         <NavBar cart={cart} user={user} setUser={setUser} auth={auth} />
       </div>
