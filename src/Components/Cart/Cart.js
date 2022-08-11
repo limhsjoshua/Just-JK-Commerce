@@ -54,6 +54,7 @@ const Cart = ({ cart, setCart, user }) => {
         fontFamily: "Merriweather",
         fontWeight: "900",
         marginTop: "50px",
+        paddingLeft: 20,
       }}
     >
       You have no items in your shopping cart.
