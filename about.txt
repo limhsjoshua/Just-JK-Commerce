@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Rubik Maze
+- Font Author: Copyright 2020 The Rubik Filtered Project Authors (https://github.com/NaN-xyz/Rubik-Filtered)
+- Font Source: http://fonts.gstatic.com/s/rubikmaze/v1/xMQRuF9ZVa2ftiJEavXSAX7inS-bxV4.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
