@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import emailjs from "@emailjs/browser";
 
-const Orders = ({ db, user }) => {
+const Orders = ({ db, user, setCart }) => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const orderId = params.get("order");
@@ -29,6 +29,7 @@ const Orders = ({ db, user }) => {
       ...currOrder,
       status: "paid",
     });
+    setCart([]);
     setOrders((prev) =>
       prev.map((order) => {
         if (order.id === currOrder.id) {

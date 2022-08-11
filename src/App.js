@@ -72,7 +72,10 @@ const App = () => {
         />
         <Route path="payment" element={<Payment db={db} />} />
         <Route path="confirm-shipped" element={<ConfirmShipped db={db} />} />
-        <Route path="orders" element={<Orders db={db} user={user} />} />
+        <Route
+          path="orders"
+          element={<Orders db={db} user={user} setCart={setCart} />}
+        />
         <Route path="/" element={<Landing />} />
       </Routes>
     </div>
